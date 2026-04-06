@@ -3,3 +3,14 @@ pdfplumber
 pytesseract
 Pillow
 scikit-learn
+google-generativeai
+groq
+indic-nlp-library
+sentencepiece
+torch
+scipy
+transformers
+datasets
+accelerate
+numpy
+pandas
