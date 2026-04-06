@@ -60,7 +60,6 @@ python training/finetune_model.py
 - `data/legal_corpus.csv` - bilingual training data
 - `data/legal_glossary.csv` - glossary terms extracted from the PDF
 - `data/Legal Kanna.pdf` - source document used for glossary extraction
-- `TRAINING.md` - detailed training notes and examples
 
 ## Notes
 
