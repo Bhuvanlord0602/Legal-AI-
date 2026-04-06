@@ -7,7 +7,7 @@ import streamlit as st
 from nlp.utils import extract_text_from_pdf, extract_text_from_image, chunk_text
 from nlp.preprocessing import preprocess_text
 from translation.translator import translate as glossary_translate
-from translation.neural_translator import HybridTranslator, load_glossary_from_dict, NeuralTranslator
+from translation.neural_translator import HybridTranslator, load_glossary_from_dict
 from nlp.ner_legal import highlight_entities
 from retrieval.embeddings import fit_transform, get_vectorizer
 from retrieval.vector_db import VectorDB
@@ -62,15 +62,15 @@ if uploaded_file:
     clean_text = preprocess_text(text)
 
     # translate (try NMT first, fallback to glossary)
-    english_text, method = translator.translate(clean_text)
+    english_text, _ = translator.translate(clean_text)
+
+    st.subheader("🌍 Translated Text (English)")
+    st.write(english_text[:1000])
     
     # extract legal entities
     entities_info = highlight_entities(english_text)
     if entities_info["entity_count"] > 0:
         st.info(f"🔍 Found {entities_info['entity_count']} legal entities (acts, sections, courts, etc.)")
-
-    st.subheader("🌍 Translated Text (English)")
-    st.write(english_text[:1000])
     
     with st.expander("Show extracted legal entities"):
         st.json(entities_info["entities"])
